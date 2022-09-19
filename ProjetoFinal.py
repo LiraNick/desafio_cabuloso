@@ -10,7 +10,7 @@ escolha=False
 usuario = {"nome":nome, "telefone":telefone, "cpf":cpf}
 
 while escolha == False:
-    print ("\n" * 130)
+    
     escolha2 =False
     escolha3 =False
     cond=False
