@@ -13,7 +13,6 @@ if len(cpf) == 11:
     c = 10
     for i in range(9):
         resultado = resultado+(int(cpf[i])*c)
-        print(f"index da string:{i}: soma: {cpf[i]} * {c} ")
         c = c-1
     
     #Multiplicarmos esse resultado por 10 e dividirmos por 11
@@ -43,7 +42,6 @@ if len(cpf) == 11:
     c = 11
     for i in range(10):
         resultado = resultado+(int(cpf[i])*c)
-        print(f"index da string:{i}: soma: {cpf[i]} * {c} ")
         c = c-1
 
     #Seguindo o mesmo processo da primeira verificação, multiplicamos por 10 e dividimos por 11
