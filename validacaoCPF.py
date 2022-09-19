@@ -1,5 +1,3 @@
-
-
 cpf = str(input("Digite um CPF válido (somente números):"))
 
 #Verifica se o CPF digitado possui apenas 11 dígitos
