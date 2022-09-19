@@ -8,7 +8,7 @@ cpf = 0
 escolha=False
 
 usuario = {"nome":nome, "telefone":telefone, "cpf":cpf}
-
+print ("\n" * 130)
 while escolha == False:
     escolha2 =False
     escolha3 =False
