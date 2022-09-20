@@ -33,7 +33,7 @@ while escolha == False:
         while escolha2==False:
             
             os.system('cls' if os.name == 'nt' else 'clear')
-            print("Escolha a opção:\n 1.Reclamção\n2.Alteração de dados\n")
+            print("Escolha a opção:\n1.Reclamção\n2.Alteração de dados\n")
             var=int(input("digite a opção aqui:"))
             if(var==1):
                 
@@ -71,7 +71,7 @@ while escolha == False:
                 os.system('cls' if os.name == 'nt' else 'clear')
                 while(escolha3==False):
                     os.system('cls' if os.name == 'nt' else 'clear')
-                    print("Escolha a opção:\n 1.Nome \n2.CPF\n3.Telefone")
+                    print("Escolha a opção:\n1.Nome \n2.CPF\n3.Telefone")
                     var=int(input("digite a opção aqui:"))
                     if(var==1):
                         print("escolheu alteração de nome")
