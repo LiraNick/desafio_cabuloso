@@ -8,7 +8,7 @@ telefone = 0
 cpf = 0
 escolha=False
 
-usuario = {"nome":nome, "telefone":telefone, "cpf":cpf}
+ 
 sleep(1)
 os.system('cls' if os.name == 'nt' else 'clear')
 while escolha == False:

@@ -1,5 +1,9 @@
+from importlib.metadata import requires
 from time import sleep
 import os
+from Usuario import Usuario
+
+
 
 def validaCPF(cpf):
     if len(cpf) == 11:
@@ -25,7 +29,6 @@ def validaCPF(cpf):
         if resultado == int(cpf[9]):
             validacao1 = True
 
-        #=============
         #Segunda validação
         
         #A validação do segundo dígito é semelhante à primeira,
@@ -58,210 +61,70 @@ def validaCPF(cpf):
         return False      
 
 
-poli = "*"*10
 nome = ''
 telefone = 0
 cpf = 0
-escolha=False
+loopExit=False
 
-usuario = {"nome":nome, "telefone":telefone, "cpf":cpf}
-sleep(1)
+pessoa = []
+
 os.system('cls' if os.name == 'nt' else 'clear')
 
-while escolha == False:
-    escolha2 =False
-    escolha3 =False
-    cond=False
-    s = str(input("\nVocê gostaria de se identificar? \n 1.sim \n 2.nao \n :>"))
+usuario = {"nome":nome, "telefone":telefone, "cpf":cpf}
 
-    if s == "sim" or 1:
+usuario ["nome"] = str(input("Digite seu nome completo: ")) 
+usuario ["telefone"] = int(input("Digite o número do seu telefone: "))
+usuario ["cpf"] = int(input("Digite o seu CPF: "))
+
+pessoa.append(Usuario(usuario["nome"], usuario["telefone"], usuario["cpf"]))
+pessoa.append(Usuario("Jean", 48484,84848))
+
+
+for i in range(0, len(pessoa)):
+    pessoa[i].mostraDados()
+
+exitCondition = False
+
+#Início do looping do programa
+os.system('cls' if os.name == 'nt' else 'clear')
+
+while exitCondition == False:
+    print("Bem vindo ao sistema de castro de pessoas e reclamações!")
+    print("Escolha uma opção:")
+    print("1 - Cadastrar usuários")
+    print("2 - Listar usuários")
+    print("3 - Registrar um problema")
+    print("5 - Sair")
+    menuSelect = int(input(' ::'))
+    
+    if menuSelect == 1:
         os.system('cls' if os.name == 'nt' else 'clear')
-        usuario = {"nome":nome, "telefone":telefone, "cpf":cpf}
-
-        print(f"\n {poli} IDENTIFIQUE-SE {poli} \n")
-
+        print("Entre com os dados do usuário:")
         usuario ["nome"] = str(input("Digite seu nome completo: ")) 
         usuario ["telefone"] = int(input("Digite o número do seu telefone: "))
-        usuario ["cpf"] = int(input("Digite o seu CPF: "))
-
-        # Não sei o que isso significa 
-        # final = "Obrigado {} pelo contato!! Tenha um otimo dia!".format(usuario['nome'])
         
-        
-        while escolha2==False:
-            
-            os.system('cls' if os.name == 'nt' else 'clear')
-            print("Escolha a opção:\n1.Reclamção\n2.Alteração de dados\n")
-            
-            var=int(input("digite a opção aqui:"))
-            if(var==1):
-                
-                os.system('cls' if os.name == 'nt' else 'clear')
-                relato = str(input("Por favor, nos relate o ocorrido: "))
-                
-            #Nao mostrar isso
-            # print(final)
-                while cond == False:
-                    t=str(input("\nGostaria de falar com um de nossos atendentes? \n1.sim \n2.nao \n :>"))
-                    if  t== "sim" or t==1:
-                        
-                        os.system('cls' if os.name == 'nt' else 'clear')
-                        for c in range(10,0,-1):
-                            sleep(1)
-                            print("Por favor aguarde, estamos direcionando para um de nossos atendentes \n posição na fila: {} de 10".format(c))
-                        print("Encaminhado!!")
-                        sleep(2)
-                        os.system('cls' if os.name == 'nt' else 'clear')
-                        cond=True
-                        escolha2=True
-                    elif t == "nao" or t==2: 
-                        #print(final)
-                        sleep(2)
-                        os.system('cls' if os.name == 'nt' else 'clear')
-                        cond=True
-                        escolha2=True
-                        
-                    else:
-                        cond = False
-                        print("Condição inexistente")
-                        sleep(2)
-                        os.system('cls' if os.name == 'nt' else 'clear')
-            elif var==2:
-                print("escolheu 2")
-                os.system('cls' if os.name == 'nt' else 'clear')
-                while(escolha3==False):
-                    os.system('cls' if os.name == 'nt' else 'clear')
-                    print("Escolha a opção:\n1.Nome \n2.CPF\n3.Telefone")
-                    var=int(input("digite a opção aqui:"))
-                    if(var==1):
-                        print("escolheu alteração de nome")
-                        nome=str(input("Digite o novo nome:"))
-                        usuario["nome"]=nome
-                        print("seu nome foi alterado para: {}".format(usuario["nome"]))
-                        print("obrigado {} pelo contato!".format(usuario["nome"]))
-                        sleep(2)
-                        os.system('cls' if os.name == 'nt' else 'clear')
-                        escolha3=True
-                        escolha2=True
-                    elif var ==2:
-                        print("escolheu alteração de cpf")
-                        sleep(2)
-                        os.system('cls' if os.name == 'nt' else 'clear')
-                        
-                        validacaoMaster = False
-                        
-                        #Loop de validação de CPF enquanto não for válido fica pedindo.
-                        while validacaoMaster == False:
-                        
-                            cpf = str(input("Digite um CPF válido (somente números):"))
-                            if len(cpf) == 11:
-                                #entra nas outras validações
-                                validacao1 = False    
-                                #Primeira validação
-                                resultado = 0
-                                c = 10
-                                for i in range(9):
-                                    resultado = resultado+(int(cpf[i])*c)
-                                    
-                                    c = c-1
-                                #print(f"Total das multiplicações primera parte:{resultado}")
-                                
-                                resultado = (resultado*10)%11
-                                if resultado == 10:
-                                    resultado = 0
-                                
-                                #print(f"Resto da divisão: {resultado} tem que ser igual a {cpf[9]}")
-                                
-                                if resultado == int(cpf[9]):
-                                    validacao1 = True
-                                    
-                                #print(f"Resto da divisão: {(resultado*10)%11}")
-                                
-                                #print("Primeira Validação correta")
-                                #=============
-                                #Segunda validação
-                                validacao2 = False
-                                resultado = 0
-                                c = 11
-                                for i in range(10):
-                                    resultado = resultado+(int(cpf[i])*c)
-                                    
-                                    c = c-1
-                                
-                                #print(f"Total das multiplicações segunda parte:{resultado}")
-                                
-                                resultado = (resultado*10)%11
-                                
-                                #print(f"Resto da divisão: {resultado} tem que ser igual a {cpf[10]}")
-                                
-                                if resultado == int(cpf[10]):
-                                    validacao2 = True
-                                
-                                if validacao1 and validacao2:
-                                    validacaoMaster = True
-                                
-                                #print(f"Resultado: {validacao1} {validacao2}")
-                                
-                                if validacao1 and validacao2:
-                                    print("CPF Válido")
-                                    escolha2=True
-                                    escolha3=True
-                                    usuario["cpf"]=cpf
-                                    print("seu cpf foi alterado para: {}".format(usuario["cpf"]))
-                                    print(final)
-                                    sleep(2)
-                                    os.system('cls' if os.name == 'nt' else 'clear')
-                                else:
-                                    print("CPF Inválido")
-                                    escolha2=True
-                                    escolha3=True
-                                    print(final)
-                                    sleep(2)
-                                    os.system('cls' if os.name == 'nt' else 'clear')
-                            else:
-                                print("CPF inválido")
-                                escolha2=True
-                                escolha3=True
-                                print(final)
-                                sleep(2)
-                                os.system('cls' if os.name == 'nt' else 'clear')
-                                
-                            #fim do while de teste de CPF
-                            
-                    elif var ==3:
-                            
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            print("escolheu alteração de telefone")
-                            telefone=str(input("Digite o novo telefone:"))
-                            usuario["telefone"]=telefone
-                            print("seu telefone foi alterado para: {}".format(usuario["telefone"]))
-                            print(final)
-                            sleep(2)
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            escolha2=True
-                            escolha3=True
-                    else:
-                            print("valor digitado incorreto \n")
-                            sleep(2)
-                            os.system('cls' if os.name == 'nt' else 'clear')
-                            escolha3=False
+        #Validação de CPF, se for verdadeiro, cadastra se não pula/cancela cadastro.
+        validaCpfCondicao = False
+        while validaCpfCondicao == False:
+            usuario ["cpf"] = str(input("Digite o seu CPF: "))
+            if validaCPF(usuario["cpf"]):
+                validaCpfCondicao = True
+                pessoa.append(Usuario(usuario["nome"], usuario["telefone"], usuario["cpf"]))
+                #Mostra pessoa cadastrada
+                print(f"Usuário {pessoa[len(pessoa)-1].nome} com CPF:{pessoa[len(pessoa)-1].cpf} cadastrado com sucesso!")
+                print("")
             else:
-                print("valor digitado incorreto \n")
-                sleep(2)
-                os.system('cls' if os.name == 'nt' else 'clear')
-                escolha2=False
-
-
-
-    elif s == "nao" or 2: 
+                print("CPF Inválido! Gostaria de prosseguir?")
+                print("1 - Ajustar")
+                print("2 - Cancelar")
+                condicaoContinua = int(input("::"))
+                if condicaoContinua == 1:
+                    validaCpfCondicao = False
+                else:
+                    validaCpfCondicao = True
+                    
+                    
         
-        relato = str(input("Por favor, nos relate o ocorrido: "))
-        print("Obrigado por relatar!")
-        sleep(2)
-        os.system('cls' if os.name == 'nt' else 'clear')
-
-    else:
-        
-        print("Condição inexistente")
-        sleep(2)
-        os.system('cls' if os.name == 'nt' else 'clear')
+    
+    
+    
