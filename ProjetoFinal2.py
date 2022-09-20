@@ -89,7 +89,7 @@ exitCondition = False
 os.system('cls' if os.name == 'nt' else 'clear')
 
 while exitCondition == False:
-    print("Bem vindo ao sistema de castro de pessoas e reclamações!")
+    print("Bem vindo ao sistema de cadastro de pessoas e reclamações!")
     print("Escolha uma opção:")
     print("1 - Cadastrar usuários")
     print("2 - Listar usuários")
@@ -124,7 +124,14 @@ while exitCondition == False:
                     validaCpfCondicao = True
                     
                     
-        
+    elif menuSelect == 2:
+        pass
     
-    
-    
+    elif menuSelect == 3:
+        pass    
+    elif menuSelect == 5:
+        exitCondition = True;
+        print("Tchau!")
+    else:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("Opção inválida!\n\n")
